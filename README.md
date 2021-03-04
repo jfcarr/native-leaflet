@@ -1,2 +1,3 @@
 # native-leaflet
-Historical Native American sites map, implemented in Leaflet.js
+
+Historical Native American sites map; a re-implementation of this [ZeeMaps site](https://www.zeemaps.com/view?group=3008794), using [OpenStreetMap](https://www.openstreetmap.org) and [Leaflet.js](https://leafletjs.com/).  Not much to see, yet...

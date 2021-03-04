@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>Historical Native American Sites</title>
+		<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js">
+		</script>
+		<style>
+			html,
+			body,
+			#map {
+				height: 100%;
+			}
+		</style>
+		<script type="text/javascript">
+			"use strict";
+
+			class MapBuilder {
+				constructor() {
+					this.osmLink = "<a href='http://www.openstreetmap.org'>Open StreetMap</a>";
+					this.map = L.map('map').setView([39.744445, -84.532237], 8);
+
+					L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+						attribution: 'Map data &copy; ' + this.osmLink, maxZoom: 18,
+					}).addTo(this.map);
+
+					// Marker icons
+					this.villageIcon = L.icon({ iconUrl: "images/indian_village.png", iconSize: [30, 30] });
+					this.moundIcon = L.icon({ iconUrl: "images/indian_mound.png", iconSize: [30, 30] });
+				}
+
+				displayMound(latitude, longitude, description) {
+					var pubMarker = L.marker([latitude, longitude],
+						{
+							icon: this.moundIcon,
+							title: description,
+							alt: description
+						}).addTo(this.map);
+				}
+
+				displayVillage(latitude, longitude, description) {
+					var pubMarker = L.marker([latitude, longitude],
+						{
+							icon: this.villageIcon,
+							title: description,
+							alt: description
+						}).addTo(this.map);
+				}
+			}
+
+			function getMarker(latitude, longitude, displayIcon, textDisplay) {
+				return L.marker([latitude, longitude], { icon: displayIcon, alt: textDisplay }).bindPopup(textDisplay);
+			}
+
+			function init() {
+				// Marker icons
+				var burialIcon = L.icon({ iconUrl: "images/indian_burial.png", iconSize: [40, 40] });
+				var moundIcon = L.icon({ iconUrl: "images/indian_mound.png", iconSize: [30, 30] });
+				var villageIcon = L.icon({ iconUrl: "images/indian_village.png", iconSize: [30, 30] });
+
+				var osmLink = "<a href='http://www.openstreetmap.org'>Open StreetMap</a>";
+
+				var osmBaseMap = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: 'Map data &copy; ' + osmLink, axZoom: 18, });
+
+				var burials = L.layerGroup(
+					[
+						getMarker(39.754169, -84.518538, burialIcon, 'OH - Preble County - Burial - West Alexandria'),
+						getMarker(39.742566, -84.506727, burialIcon, 'OH - Preble County - Burial - West Alexandra'),
+						getMarker(39.765662, -84.527698, burialIcon, 'OH - Preble County - Burial - New Lexington')
+					]
+				);
+
+				var mounds = L.layerGroup(
+					[
+						getMarker(39.734360, -84.457132, moundIcon, 'OH - Montgomery County - Mound'),
+						getMarker(39.718253, -84.625208, moundIcon, 'OH - Preble County - Mound - Eaton'),
+						getMarker(39.687697, -84.654768, moundIcon, 'OH - Preble County - Mound - Eaton')
+					]
+				);
+
+				var villages = L.layerGroup(
+					[
+						getMarker(39.618494, -84.655175, villageIcon, 'OH - Preble County - Indian Village - Camden'),
+						getMarker(39.660702, -84.489130, villageIcon, 'OH - Preble County - Indian Village - Twin Creek'),
+						getMarker(39.755812, -84.529928, villageIcon, 'OH - Preble County - Indian Village - W. Alexandria')
+					]
+				);
+
+				var map = L.map('map', {
+					center: [39.744445, -84.532237],
+					zoom: 8,
+					layers: [osmBaseMap, burials, mounds, villages]
+				});
+
+				var baseMaps = { "Standard": osmBaseMap };
+				var overlayMaps = { "Burials": burials, "Mounds": mounds, "Villages": villages };
+
+				L.control.layers(baseMaps, overlayMaps).addTo(map);
+			}
+		</script>
+
+		<!-- Matomo -->
+		<script type="text/javascript">
+			var _paq = window._paq = window._paq || [];
+			/* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+			_paq.push(['trackPageView']);
+			_paq.push(['enableLinkTracking']);
+			(function () {
+				var u = "https://matomo.goodguyscience.com/";
+				_paq.push(['setTrackerUrl', u + 'matomo.php']);
+				_paq.push(['setSiteId', '12']);
+				var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+				g.type = 'text/javascript'; g.async = true; g.src = u + 'matomo.js'; s.parentNode.insertBefore(g, s);
+			})();
+		</script>
+		<!-- End Matomo Code -->
+	</head>
+
+	<body onload=init()>
+		<div id="map"></div>
+	</body>
+
+</html>
