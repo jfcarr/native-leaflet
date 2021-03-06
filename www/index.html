@@ -49,7 +49,7 @@
 				}
 			}
 
-			function getMarker(latitude, longitude, displayIcon, textDisplay) {
+			function getMarker(textDisplay, latitude, longitude, displayIcon) {
 				return L.marker([latitude, longitude], { icon: displayIcon, alt: textDisplay }).bindPopup(textDisplay);
 			}
 
@@ -79,26 +79,33 @@
 
 				var burials = L.layerGroup(
 					[
-						getMarker(39.754169, -84.518538, burialIcon, 'OH - Preble County - Burial - West Alexandria'),
-						getMarker(39.742566, -84.506727, burialIcon, 'OH - Preble County - Burial - West Alexandra'),
-						getMarker(39.765662, -84.527698, burialIcon, 'OH - Preble County - Burial - New Lexington')
+						// Preble County
+						getMarker('OH - Preble County - Burial - New Lexington', 39.765662, -84.527698, burialIcon),
+						getMarker('OH - Preble County - Burial - West Alexandra', 39.742566, -84.506727, burialIcon),
+						getMarker('OH - Preble County - Burial - West Alexandria', 39.754169, -84.518538, burialIcon),
 					]
 				);
 
 				var mounds = L.layerGroup(
 					[
-						getMarker(39.734360, -84.457132, moundIcon, 'OH - Montgomery County - Mound'),
-						getMarker(39.718253, -84.625208, moundIcon, 'OH - Preble County - Mound - Eaton'),
-						getMarker(39.687697, -84.654768, moundIcon, 'OH - Preble County - Mound - Eaton'),
-						getMarker(39.871758, -84.531922, moundIcon, 'OH - Preble County - Mound - Millers Fork')
+						// Montgomery County
+						getMarker('OH - Montgomery County - Mound', 39.734360, -84.457132, moundIcon),
+
+						// Preble County
+						getMarker('OH - Preble County - Mound - Eaton', 39.687697, -84.654768, moundIcon),
+						getMarker('OH - Preble County - Mound - Eaton', 39.718253, -84.625208, moundIcon),
+						getMarker('OH - Preble County - Mound - Millers Fork', 39.871758, -84.531922, moundIcon),
 					]
 				);
 
 				var villages = L.layerGroup(
 					[
-						getMarker(39.618494, -84.655175, villageIcon, 'OH - Preble County - Indian Village - Camden'),
-						getMarker(39.660702, -84.489130, villageIcon, 'OH - Preble County - Indian Village - Twin Creek'),
-						getMarker(39.755812, -84.529928, villageIcon, 'OH - Preble County - Indian Village - W. Alexandria')
+						// Preble County
+						getMarker('OH - Preble County - Indian Village - Camden', 39.618494, -84.655175, villageIcon),
+						getMarker('OH - Preble County - Indian Village - Lewisburg', 39.829725, -84.541508, villageIcon),
+						getMarker('OH - Preble County - Indian Village - New Paris', 39.848445, -84.796224, villageIcon),
+						getMarker('OH - Preble County - Indian Village - Twin Creek', 39.660702, -84.489130, villageIcon),
+						getMarker('OH - Preble County - Indian Village - W. Alexandria', 39.755812, -84.529928, villageIcon),
 					]
 				);
 
