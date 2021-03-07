@@ -129,4 +129,6 @@ function init() {
 	var overlayMaps = { "Burials": burials, "Circular Enclosures": circularEnclosures, "Square Enclosures": squareEnclosures, "Mounds": mounds, "Villages": villages };
 
 	L.control.layers(baseMaps, overlayMaps).addTo(map);
+
+	L.control.scale().addTo(map);
 }
