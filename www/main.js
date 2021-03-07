@@ -120,8 +120,8 @@ function init() {
 	var villages = loadVillages(villageIcon);
 
 	var map = L.map('map', {
-		center: [39.744445, -84.532237],
-		zoom: 8,
+		center: [39.744018, -84.636640],
+		zoom: 11,
 		layers: [osmBaseMap, burials, circularEnclosures, squareEnclosures, mounds, villages]
 	});
 
